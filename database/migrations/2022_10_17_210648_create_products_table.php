@@ -20,10 +20,12 @@ return new class extends Migration
             $table->text("description");
             $table->float("price");
             $table->integer("stock");
-            $table->foreignId("category_id")->constrained("categories")
-                ->onUpdate("cascade")->onDelete("cascade");
-            $table->foreignId("brand_id")->constrained("brands")
-                ->onUpdate("cascade")->onDelete("cascade")->nullable();
+            $table->foreignId("category_id")->onUpdate("cascade")->nullOnDelete()
+                ->constrained("categories");
+            $table->foreignId("brand_id")->nullable()->onUpdate("cascade")->nullOnDelete()
+                ->constrained("brands");
+            $table->foreignId("user_id")->onUpdate("cascade")->onDelete("set_null")
+                ->constrained("users");
             $table->timestamps();
         });
     }

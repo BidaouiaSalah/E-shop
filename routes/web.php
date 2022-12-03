@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\BrandsController;
@@ -30,8 +31,8 @@ use App\Http\Controllers\admin\ReviewStatusController;
 Route::get("/", [ShopController::class, "home"])->name("home");
 Route::get("shop", [ShopController::class, "index"])->name("shop.index");
 Route::get("shop/{shop}", [ShopController::class, "show"])->name("shop.show");
-Route::get("contact", [ShopController::class, "contact"])->name("contact");
-Route::post("contactus", [ShopController::class, "contactus"])->name("contactUs");
+Route::get("contact", [ContactController::class, "contact"])->name("contact");
+Route::post("contactus", [ContactController::class, "contactus"])->name("contactUs");
 Route::get("search", [ShopController::class, "search"])->name("search");
 
 Route::get("guestcheckout", [CheckoutController::class, "guestCheckout"])->name("guestCheckout");

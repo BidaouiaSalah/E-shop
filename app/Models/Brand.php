@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Database\Factories\BrandFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Brand extends Model
 {
@@ -15,7 +16,7 @@ class Brand extends Model
      * @var array
      */
     protected $fillable = ['name'];
-    
+
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -24,5 +25,14 @@ class Brand extends Model
     public function category()
     {
         return $this->belongsTo(Product::class);
+    }
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return BrandFactory::new();
     }
 }

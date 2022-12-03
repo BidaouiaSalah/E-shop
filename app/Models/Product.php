@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,8 +27,19 @@ class Product extends Model implements HasMedia
     "price",
     "stock",
     "category_id",
-    "brand_id"
+    "brand_id",
+    "user_id"
   ];
+  
+  /**
+   * Create a new factory instance for the model.
+   *
+   * @return \Illuminate\Database\Eloquent\Factories\Factory
+   */
+  protected static function newFactory()
+  {
+    return ProductFactory::new();
+  }
 
   public function category()
   {
@@ -37,6 +49,11 @@ class Product extends Model implements HasMedia
   public function brand()
   {
     return $this->belongsTo(Brand::class);
+  }
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
   }
 
   public function reviews()

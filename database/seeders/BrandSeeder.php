@@ -15,21 +15,6 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        Brand::create([
-            "id" => 6,
-            "name" => "OPPO",
-        ]);
-        Brand::create([
-            "id" => 7,
-            "name" => "IPhone 11 Pro",
-        ]);
-        Brand::create([
-            "id" => 8,
-            "name" => "TCL",
-        ]);
-        Brand::create([
-            "id" => 10,
-            "name" => "Dell",
-        ]);
+        Brand::factory()->count(10)->create();
     }
 }

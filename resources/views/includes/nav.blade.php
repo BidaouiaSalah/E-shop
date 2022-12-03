@@ -15,13 +15,9 @@
              style="width: calc(100% - 30px); z-index: 1;">
              <div class="navbar-nav w-100 overflow-hidden"
                 style="height: 410px">
-                @foreach ($categories as $category)
-                   <a href="{{ route('shop.index', ['slug' => $category->name]) }}"
-                      class="nav-item nav-link">{{ $category->name }}</a>
-                @endforeach
                 <div class="nav-item dropdown">
                    <a href="#"
-                      class="nav-link"
+                      class="nav-link active"
                       data-toggle="dropdown">Major Brands <i
                          class="fa fa-angle-down float-right mt-1"></i></a>
                    <div
@@ -32,6 +28,10 @@
                       @endforeach
                    </div>
                 </div>
+                @foreach ($categories as $category)
+                   <a href="{{ route('shop.index', ['category' => $category->id]) }}"
+                      class="nav-item nav-link">{{ $category->name }}</a>
+                @endforeach
              </div>
           </nav>
        </div>

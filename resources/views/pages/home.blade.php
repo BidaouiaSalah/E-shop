@@ -1,69 +1,11 @@
 @extends('layouts.app')
 @section('content')
-   {{-- <div id="header-carousel"
-      class="carousel slide"
-      data-ride="carousel">
-      <div class="carousel-inner">
-         <div class="carousel-item active"
-            style="height: 410px;">
-            <img class="img-fluid"
-               src="{{ asset('storage/img/carousel-1.jpg') }}"
-               alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-               <div class="p-3"
-                  style="max-width: 700px;">
-                  <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your
-                     First Order</h4>
-                  <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable
-                     Tech</h3>
-                  <a href=""
-                     class="btn btn-light py-2 px-3">Shop Now</a>
-               </div>
-            </div>
-         </div>
-         <div class="carousel-item"
-            style="height: 410px;">
-            <img class="img-fluid"
-               src="{{ asset('storage/img/carousel-2.jpg') }}"
-               alt="Image">
-            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-               <div class="p-3"
-                  style="max-width: 700px;">
-                  <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your
-                     First Order</h4>
-                  <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable
-                     Price</h3>
-                  <a href=""
-                     class="btn btn-light py-2 px-3">Shop Now</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <a class="carousel-control-prev"
-         href="#header-carousel"
-         data-slide="prev">
-         <div class="btn btn-dark"
-            style="width: 45px; height: 45px;">
-            <span class="carousel-control-prev-icon mb-n2"></span>
-         </div>
-      </a>
-      <a class="carousel-control-next"
-         href="#header-carousel"
-         data-slide="next">
-         <div class="btn btn-dark"
-            style="width: 45px; height: 45px;">
-            <span class="carousel-control-next-icon mb-n2"></span>
-         </div>
-      </a>
-
-   </div> --}}
    </div>
    </div>
    </div>
    @include('includes.header', ['pageTitle' => 'Home'])
    <!-- Navbar End -->
    <main class="container-fluid pt-5">
-
       <!-- Featured Start -->
       <div class="container-fluid pt-5">
          <div class="row px-xl-5 pb-3">
@@ -104,8 +46,6 @@
             <div class="col-md-6 pb-4">
                <div
                   class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                  <img src="{{ asset('storage/img/offer-1.png') }}"
-                     alt="">
                   <div class="position-relative"
                      style="z-index: 1;">
                      <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
@@ -118,8 +58,6 @@
             <div class="col-md-6 pb-4">
                <div
                   class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
-                  <img src="{{ asset('storage/img/offer-2.png') }}"
-                     alt="">
                   <div class="position-relative"
                      style="z-index: 1;">
                      <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
@@ -223,55 +161,55 @@
          </div>
          <div class="row px-xl-5 pb-3">
             @foreach ($products as $product)
-                  <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                     <div class="card product-item border-0 mb-4">
-                        <div
-                           class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                           <!-- Product image-->
-                           @if ($product->media->count() > 0)
-                              {{ $product->media[0] }}
-                           @else
-                              <img src="{{ asset('/storage/default.png') }}">
-                           @endif
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                           <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
-                           <div class="d-flex justify-content-center">
-                              <h6>${{ $product->price }}</h6>
-                           </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                           <a href="{{ route('shop.show', ['shop' => $product->id]) }}"
-                              class="btn btn-sm text-dark p-0"><i
-                                 class="fas fa-eye text-primary mr-1"></i>View
-                              Detail</a>
-                           <!-- add  product to cart-->
-                           <form action="{{ route('cart.store') }}"
-                              method="post">
-                              @csrf
-                              <input type="hidden"
-                                 name="id"
-                                 value="{{ $product->id }}">
-                              <input type="hidden"
-                                 name="qty"
-                                 value="{{ 1 }}">
-                              <input type="hidden"
-                                 name="name"
-                                 value="{{ $product->name }}">
-                              <input type="hidden"
-                                 name="description"
-                                 value="{{ $product->description }}">
-                              <input type="hidden"
-                                 name="price"
-                                 value="{{ $product->price }}">
-                              <button type="submit"
-                                 class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To
-                                 Cart</button>
-                           </form>
+               <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                  <div class="card product-item border-0 mb-4">
+                     <div
+                        class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <!-- Product image-->
+                        @if ($product->media->count() > 0)
+                           {{ $product->media[0] }}
+                        @else
+                           <img src="{{ asset('/storage/default.png') }}">
+                        @endif
+                     </div>
+                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
+                        <div class="d-flex justify-content-center">
+                           <h6>${{ $product->price }}</h6>
                         </div>
                      </div>
+                     <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="{{ route('shop.show', ['shop' => $product->id]) }}"
+                           class="btn btn-sm text-dark p-0"><i
+                              class="fas fa-eye text-primary mr-1"></i>View
+                           Detail</a>
+                        <!-- add  product to cart-->
+                        <form action="{{ route('cart.store') }}"
+                           method="post">
+                           @csrf
+                           <input type="hidden"
+                              name="id"
+                              value="{{ $product->id }}">
+                           <input type="hidden"
+                              name="qty"
+                              value="{{ 1 }}">
+                           <input type="hidden"
+                              name="name"
+                              value="{{ $product->name }}">
+                           <input type="hidden"
+                              name="description"
+                              value="{{ $product->description }}">
+                           <input type="hidden"
+                              name="price"
+                              value="{{ $product->price }}">
+                           <button type="submit"
+                              class="btn btn-sm text-dark p-0"><i
+                                 class="fas fa-shopping-cart text-primary mr-1"></i>Add To
+                              Cart</button>
+                        </form>
+                     </div>
                   </div>
+               </div>
             @endforeach
          </div>
       </div>
@@ -280,7 +218,7 @@
       <div class="container-fluid py-5">
          <div class="row px-xl-5">
             <div class="col">
-               <div class="owl-carousel vendor-carousel">
+               {{-- <div class="owl-carousel vendor-carousel">
                   <div class="vendor-item border p-4">
                      <img src="img/vendor-1.jpg"
                         alt="">
@@ -313,7 +251,7 @@
                      <img src="img/vendor-8.jpg"
                         alt="">
                   </div>
-               </div>
+               </div> --}}
             </div>
          </div>
       </div>
