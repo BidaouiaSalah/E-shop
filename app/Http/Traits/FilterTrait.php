@@ -42,5 +42,23 @@ trait FilterTrait
             'brands' => Brand::all()
         ]);
     }
-    
+
+    public function productsSearch()
+    {
+        $query = request()->query("query");
+
+        $searchedProducts = Product::where("slug", "LIKE", "%$query%")
+            ->orWhere("name", "LIKE", "%$query%")
+            ->orWhere("description", "LIKE", "%$query%")
+            ->get();
+
+        if ($searchedProducts) {
+            return view("pages.search")->with([
+                "searchedProducts" => $searchedProducts,
+                "categories" => Category::all(),
+                "brands" => Brand::all()
+            ]);
+        }
+        return   back()->with(306);
+    }
 }

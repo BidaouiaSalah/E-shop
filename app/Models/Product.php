@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Product extends Model implements HasMedia
 {
-  use HasFactory, InteractsWithMedia, Searchable;
+  use HasFactory, InteractsWithMedia;
 
   /**
    * The attributes that are mass assignable.
@@ -30,7 +29,7 @@ class Product extends Model implements HasMedia
     "brand_id",
     "user_id"
   ];
-  
+
   /**
    * Create a new factory instance for the model.
    *

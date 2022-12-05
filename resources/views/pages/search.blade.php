@@ -10,9 +10,10 @@
 
       @if ($searchedProducts->isEmpty())
          <h4 class="mb-3 display-5 text-bold text-center ">No Results Avalible, Sorry :)!
-         <a href="{{route('home')}}" class="btn btn-lg btn-outline-primary">Continue Shopping</a></h4>
+            <a href="{{ route('home') }}"
+               class="btn btn-lg btn-outline-primary">Continue Shopping</a>
+         </h4>
       @else
-         {
          <div class="row px-xl-12">
             <div class="col-lg-12 table-responsive mb-5">
                <table class="table table-bordered text-center mb-0">
@@ -42,7 +43,7 @@
                </table>
             </div>
          </div>
-         }
+
       @endif
 
    </div>

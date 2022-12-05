@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\FilterTrait;
 use App\Models\Brand;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Traits\FilterTrait;
 
 class ShopController extends Controller
 {
@@ -50,23 +49,6 @@ class ShopController extends Controller
             'relatedProducts' => $relatedProducts,
             'categories' => Category::all(),
             'brands' => Brand::all()
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        $request->validate([
-            'query' => 'required'
-        ]);
-
-        $query = $request->input("query");
-
-        $searchedProducts = Product::search($query)->paginate(4);
-
-        return view("pages.search")->with([
-            "searchedProducts" => $searchedProducts,
-            "categories" => Category::all(),
-            "brands" => Brand::all()
         ]);
     }
 }

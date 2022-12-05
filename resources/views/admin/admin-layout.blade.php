@@ -41,6 +41,7 @@
                type="text"name="query"
                placeholder="Search for..."
                aria-label="Search for..."
+               name="query"
                aria-describedby="btnNavbarSearch" />
             <button class="btn btn-primary"
                id="btnNavbarSearch"
@@ -151,6 +152,27 @@
                      <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link"
                            href="{{ route('admin.reviews.index') }}">List</a>
+                     </nav>
+                  </div>
+
+                  <a class="nav-link collapsed"
+                     href="#"
+                     data-bs-toggle="collapse"
+                     data-bs-target="#collapseLayoutsUsers"
+                     aria-expanded="false"
+                     aria-controls="collapseLayoutsUsers">
+                     <div class="sb-nav-link-icon"><i class="fa fa-comment"></i></div>
+                     Users
+                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i>
+                     </div>
+                  </a>
+                  <div class="collapse"
+                     id="collapseLayoutsUsers"
+                     aria-labelledby="headingOne"
+                     data-bs-parent="#sidenavAccordion">
+                     <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link"
+                           href="{{ route('admin.users.index') }}">List</a>
                      </nav>
                   </div>
                </div>

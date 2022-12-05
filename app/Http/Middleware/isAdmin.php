@@ -17,7 +17,7 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->is_admin == false) {
-            return redirect()->route('shop.index');
+            return back()->with(["toast" => "You are autorized only admin"]);
         }
         return $next($request);
     }

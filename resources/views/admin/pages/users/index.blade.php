@@ -2,11 +2,12 @@
 @section('content')
    <main>
       <div class="container-fluid px-4">
-         <h1 class="mt-4">Search</h1>
+         <h1 class="mt-4">Users</h1>
          <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Search</li>
+            <li class="breadcrumb-item active">Users</li>
          </ol>
+
          @include('partials.alert-message')
          <div class="card mb-4">
             <div class="card-header">
@@ -28,40 +29,52 @@
                               <th data-sortable=""
                                  style="width: 19.0549%;"
                                  class="asc"><a href="#"
-                                    class="dataTable-sorter">Price</a></th>
+                                    class="dataTable-sorter">Mail</a></th>
                               <th data-sortable=""
                                  style="width: 19.0549%;"
                                  class="asc"><a href="#"
-                                    class="dataTable-sorter">Desciption</a></th>
+                                    class="dataTable-sorter">Admin</a></th>
                               <th data-sortable=""
                                  style="width: 19.0549%;"
                                  class="asc"><a href="#"
-                                    class="dataTable-sorter">stock</a></th>
-                              <th data-sortable=""
-                                 style="width: 19.0549%;"
-                                 class="asc"><a href="#"
-                                    class="dataTable-sorter">User Name</a></th>
-                              <th data-sortable=""
-                                 style="width: 19.0549%;"
-                                 class="asc"><a href="#"
-                                    class="dataTable-sorter">User Email</a></th>
+                                    class="dataTable-sorter">New Admin</a></th>
                            </tr>
                         </thead>
                         <tbody>
-                           @foreach ($productsSearch as $product)
+                           @foreach ($users as $user)
                               <tr>
-                                 <td>{{ $product->name ?? 'No Infos' }}</td>
-                                 <td>{{ $product->price ?? 'No Infos' }}</td>
-                                 <td>{{ $product->description ?? 'No Infos' }}</td>
-                                 <td>{{ $product->stock ?? 'No Infos' }}</td>
-                                 <td>{{ $product->user->name }}</td>
-                                 <td>{{ $product->user->email }}</td>
+                                 <td>{{ $user->name ?? 'No Infos' }}</td>
+                                 <td>{{ $user->email ?? 'No Infos' }}</td>
+                                 <td>
+                                    @if ($user->is_admin == true)
+                                       <span class="badge badge-danger bg-danger">Admin</span>
+                                    @else
+                                       <span class="badge badge-success bg-success">User</span>
+                                    @endif
+                                 </td>
+                                 <td>
+                                    <form
+                                       action="{{ route('admin.users.update', ['user' => $user->id]) }}"
+                                       method="post">
+                                       @csrf
+                                       @method('put')
+                                       <button type="submit"
+                                          class="btn btn-outline-info">New Admin</button>
+                                    </form>
+                                 </td>
                               </tr>
                            @endforeach
                         </tbody>
                      </table>
                   </div>
-
+                  <div class="dataTable-bottom">
+                     <div class="dataTable-info">Showing 1 to 10 of 57 entries</div>
+                     <nav class="dataTable-pagination">
+                        <ul class="dataTable-pagination-list">
+                           {{ $users->links() }}
+                        </ul>
+                     </nav>
+                  </div>
                </div>
             </div>
          </div>

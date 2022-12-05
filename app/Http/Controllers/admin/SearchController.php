@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\User;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
@@ -12,16 +13,12 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $request->validate([
-            'query' => 'required'
-        ]);
+        $query = $request->query("query");
 
-        $query = $request->input("query");
-
-        $searchedProducts = Product::search($query)->paginate(4);
+        $productsSearch = Product::where("slug", "LIKE", "%$query%")->with("user")->get();
 
         return view("admin.pages.search")->with([
-            "searchedProducts" => $searchedProducts,
+            "productsSearch" => $productsSearch,
             "categories" => Category::all(),
             "brands" => Brand::all()
         ]);

@@ -9,6 +9,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\BrandsController;
 use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\SearchController;
@@ -29,11 +30,12 @@ use App\Http\Controllers\admin\ReviewStatusController;
 */
 
 Route::get("/", [ShopController::class, "home"])->name("home");
+Route::get("/profile", [ShopController::class, "profile"])->name("profile")->middleware("auth");
 Route::get("shop", [ShopController::class, "index"])->name("shop.index");
 Route::get("shop/{shop}", [ShopController::class, "show"])->name("shop.show");
 Route::get("contact", [ContactController::class, "contact"])->name("contact");
 Route::post("contactus", [ContactController::class, "contactus"])->name("contactUs");
-Route::get("search", [ShopController::class, "search"])->name("search");
+Route::get("search", [ShopController::class, "productsSearch"])->name("search");
 
 Route::get("guestcheckout", [CheckoutController::class, "guestCheckout"])->name("guestCheckout");
 Route::get("checkout", [CheckoutController::class, "index"])->name("checkout.index")
@@ -64,6 +66,7 @@ Route::middleware([isAdmin::class, "auth"])->name("admin.")->prefix("/admin")->g
     Route::resource("brands", BrandsController::class);
     Route::resource("orders", OrdersController::class)->except(['store', 'create']);
     Route::resource("reviews", ReviewStatusController::class);
+    Route::resource("users", UsersController::class);
 
     Route::get("dashboard", [AdminController::class, "index"])
         ->name("dashboard");

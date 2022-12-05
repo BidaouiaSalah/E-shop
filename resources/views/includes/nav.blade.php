@@ -85,8 +85,13 @@
                                class="d-none">
                                @csrf
                             </form>
-                            <a href="{{ route('admin.dashboard') }}"
-                               class="dropdown-item">Admin</a>
+                            @if (auth()->user()->is_admin == true)
+                               <a href="{{ route('admin.dashboard') }}"
+                                  class="dropdown-item">Admin</a>
+                            @else
+                               <a href="{{ route('admin.dashboard') }}"
+                                  class="dropdown-item">Profile</a>
+                            @endif
                          </div>
                       </div>
                    @endguest
