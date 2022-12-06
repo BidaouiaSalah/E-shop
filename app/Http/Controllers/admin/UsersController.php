@@ -72,17 +72,12 @@ class UsersController extends Controller
      */
     public function update($id)
     {
-    //     $newUserAdmin = User::find($id);
-
-    //     // if ($newUserAdmin->is_admin == 0) {
-    //  dump('hhh');
-    //     }
-
-    //         $newUserAdmin->is_admin == 1;
-    //         $newUserAdmin->save();
-    //         return back()->with([
-    //             "success_message" => "The user is new an admin"
-    //         ]);
+        $newUserAdmin = User::find($id);
+        $newUserAdmin->is_admin = !$newUserAdmin->is_admin;
+        $newUserAdmin->save();
+        return back()->with([
+            "success_message" => "The user is new an admin"
+        ]);
     }
 
     /**
@@ -93,6 +88,16 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if($user->is_admin){
+            return back()->with([
+                "warning_message" => "User is admin"
+            ]);
+        }
+        $user->delete();
+
+        return back()->with([
+            "success_message" => "User deleted succesfully"
+        ]);
     }
 }

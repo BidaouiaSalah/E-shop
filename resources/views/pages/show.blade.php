@@ -37,13 +37,6 @@
          <div class="col-lg-7 pb-5">
             <h3 class="font-weight-semi-bold">{{ $product->name }}</h3>
             <div class="d-flex mb-3">
-               {{-- <div class="text-primary mr-2">
-                  <small class="fas fa-star"></small>
-                  <small class="fas fa-star"></small>
-                  <small class="fas fa-star"></small>
-                  <small class="fas fa-star-half-alt"></small>
-                  <small class="far fa-star"></small>
-               </div> --}}
                <small class="pt-1">({{ $product->reviews->count() ?? '0' }}
                   Reviews)</small>
             </div>

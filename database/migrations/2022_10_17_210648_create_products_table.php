@@ -24,7 +24,7 @@ return new class extends Migration
                 ->constrained("categories");
             $table->foreignId("brand_id")->nullable()->onUpdate("cascade")->nullOnDelete()
                 ->constrained("brands");
-            $table->foreignId("user_id")->onUpdate("cascade")->onDelete("set_null")
+            $table->foreignId("user_id")->onUpdate("cascade")->Delete("cascade")
                 ->constrained("users");
             $table->timestamps();
         });

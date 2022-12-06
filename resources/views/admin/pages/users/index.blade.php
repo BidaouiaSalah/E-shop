@@ -61,6 +61,14 @@
                                        <button type="submit"
                                           class="btn btn-outline-info">New Admin</button>
                                     </form>
+                                    <form
+                                    action="{{ route('admin.users.destroy', ['user' => $user->id]) }}"
+                                    method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit"
+                                       class="btn btn-outline-info">Remove</button>
+                                 </form>
                                  </td>
                               </tr>
                            @endforeach

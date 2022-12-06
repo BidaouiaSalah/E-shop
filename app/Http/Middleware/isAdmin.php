@@ -16,8 +16,8 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->is_admin == false) {
-            return back()->with(["toast" => "You are autorized only admin"]);
+        if (!auth()->user()->is_admin) {
+            return back();
         }
         return $next($request);
     }

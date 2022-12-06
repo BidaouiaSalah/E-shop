@@ -89,7 +89,7 @@
                                <a href="{{ route('admin.dashboard') }}"
                                   class="dropdown-item">Admin</a>
                             @else
-                               <a href="{{ route('admin.dashboard') }}"
+                               <a href="{{ route('profile') }}"
                                   class="dropdown-item">Profile</a>
                             @endif
                          </div>
