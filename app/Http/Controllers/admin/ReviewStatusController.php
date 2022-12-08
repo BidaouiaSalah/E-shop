@@ -15,10 +15,19 @@ class ReviewStatusController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where("status", true)
-            ->with(["product", "user"])->paginate(5);
+        $reviews = Review::with(["product", "user"])->paginate(5);
 
         return view("admin.pages.reviews.index", compact("reviews"));
+    }
+
+    public function update(Review $review)
+    {
+        $review->status = !$review->status;
+        $review->save();
+
+        return back()->with([
+            "success_message" => "Review status updated Successfully"
+        ]);
     }
     /**
      * Remove the specified resource from storage.

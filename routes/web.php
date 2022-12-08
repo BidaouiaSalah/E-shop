@@ -58,7 +58,7 @@ Route::delete("coupons", [CouponController::class, "destroy"])->name("coupon.des
 
 Route::resource("cart", CartController::class);
 
-Route::post("review/{id}", [ReviewController::class, "store"])->middleware("auth")->name("review.store");
+Route::post("review", [ReviewController::class, "store"])->middleware("auth")->name("review.store");
 
 Route::middleware([isAdmin::class, "auth"])->name("admin.")->prefix("/admin")->group(function () {
     Route::resource("categories", CategoriesController::class);

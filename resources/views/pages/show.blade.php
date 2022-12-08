@@ -76,7 +76,7 @@
                   href="#tab-pane-1">Description</a>
                <a class="nav-item nav-link"
                   data-toggle="tab"
-                  href="#tab-pane-2">Reviews (0)</a>
+                  href="#tab-pane-2">Reviews ({{ $product->reviews->count() }})</a>
             </div>
             <div class="tab-content">
                <div class="tab-pane fade show active"
@@ -88,20 +88,22 @@
                   id="tab-pane-2">
                   <div class="row">
                      <div class="col-md-6">
-                        <h4 class="mb-4">1 review for "{{ $product->name }}"</h4>
-                        @foreach ($reviews as $review)
-                           <div class="media mb-4">
-                              <div class="media-body">
-                                 <h6>{{ $review->user->name }}<small> -
-                                       <i>{{ $review->created_at }}</i></small></h6>
-                                 <p>{{ $review->review }}.
-                                 </p>
+                        <h4 class="mb-4">Review(s)</h4>
+                        @foreach ($product->reviews as $review)
+                           @if ($review->status == 1)
+                              <div class="media mb-4">
+                                 <div class="media-body">
+                                    <h6>{{ $review->user->name }}<small> -
+                                          <i>{{ $review->created_at }}</i></small></h6>
+                                    <p>{{ $review->review }}.
+                                    </p>
+                                 </div>
                               </div>
-                           </div>
+                           @endif
                         @endforeach
                      </div>
                      <div class="col-md-6">
-                        <form action="{{ route('review.store', ['id' => $product->id]) }}"
+                        <form action="{{ route('review.store') }}"
                            method="post">
                            @csrf
                            <h4 class="mb-4">Leave a review</h4>
@@ -114,6 +116,9 @@
                                  rows="5"
                                  name="review"
                                  class="form-control"></textarea>
+                              <input type="hidden"
+                                 name="product_id"
+                                 value="{{ $product->id }}">
                            </div>
                            <div class="form-group mb-0">
                               <input type="submit"

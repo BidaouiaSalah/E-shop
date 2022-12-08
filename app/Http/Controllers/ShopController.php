@@ -36,18 +36,14 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('media')->findOrFail($id);
+        $product = Product::with('media')->with("reviews")->findOrFail($id);
 
         $relatedProducts = Product::with('media')->where('id', '!=', $id)
             ->where('slug', 'like', '%$product->slug%')
             ->relatedProducts()->get();
 
-        $reviews = Review::where('product_id', '=', $product->id)
-            ->where('status', true)->get();
-
         return view('pages.show', [
             'product' => $product,
-            'reviews' => $reviews,
             'relatedProducts' => $relatedProducts,
             'categories' => Category::all(),
             'brands' => Brand::all()

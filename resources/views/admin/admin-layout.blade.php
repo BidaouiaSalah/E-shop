@@ -12,17 +12,20 @@
    <meta name="author"
       content="" />
    <title>Dashboard - SB Admin</title>
-   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-      rel="stylesheet" />
+   <link rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+   <script type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
       crossorigin="anonymous"></script>
-
    @vite(['resources/css/admin-app.css', 'resources/js/admin-app.js'])
 
 </head>
 
 <body class="sb-nav-fixed">
-   <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
       <a class="navbar-brand ps-3"
          href="{{ route('shop.index') }}">E-commerce Start</a>
@@ -39,7 +42,7 @@
          <div class="input-group">
             <input class="form-control"
                type="text"name="query"
-               placeholder="Search for..."
+               placeholder="Search for ..."
                aria-label="Search for..."
                name="query"
                aria-describedby="btnNavbarSearch" />
@@ -51,13 +54,13 @@
       <!-- Navbar-->
       <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"
+            <a class="nav-link dropdown-toggle show"
                id="navbarDropdown"
                href="#"
                role="button"
                data-bs-toggle="dropdown"
                aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end"
+            <ul class="dropdown-menu dropdown-menu-end show"
                aria-labelledby="navbarDropdown">
                <li> <a class="dropdown-item"
                      href="{{ route('logout') }}"
@@ -75,7 +78,6 @@
             </ul>
          </li>
       </ul>
-
    </nav>
    <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
@@ -116,7 +118,7 @@
                   <a class="nav-link collapsed"
                      href="#"
                      data-bs-toggle="collapse"
-                     data-bs-target="#collapseLayoutsReviews"
+                     data-bs-target="#collapseLayoutsOrders"
                      aria-expanded="false"
                      aria-controls="collapseLayoutsOrders">
                      <div class="sb-nav-link-icon"><i class="fa fa-table"></i></div>
@@ -133,7 +135,6 @@
                            href="{{ route('admin.orders.index') }}">List</a>
                      </nav>
                   </div>
-
                   <a class="nav-link collapsed"
                      href="#"
                      data-bs-toggle="collapse"
@@ -154,14 +155,13 @@
                            href="{{ route('admin.reviews.index') }}">List</a>
                      </nav>
                   </div>
-
                   <a class="nav-link collapsed"
                      href="#"
                      data-bs-toggle="collapse"
                      data-bs-target="#collapseLayoutsUsers"
                      aria-expanded="false"
                      aria-controls="collapseLayoutsUsers">
-                     <div class="sb-nav-link-icon"><i class="fa fa-comment"></i></div>
+                     <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                      Users
                      <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i>
                      </div>
@@ -201,14 +201,16 @@
    </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
    <script src="js/scripts.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-      crossorigin="anonymous"></script>
-   <script src="assets/demo/chart-area-demo.js"></script>
-   <script src="assets/demo/chart-bar-demo.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-      crossorigin="anonymous"></script>
-   <script src="js/datatables-simple-demo.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+      integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+   @yield('extra-js')
 </body>
 
 </html>
